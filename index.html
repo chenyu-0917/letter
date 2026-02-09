@@ -3,92 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>邀請函</title>
+  <title>邀請函 - 隅溫</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;700&family=Mochiy+Pop+One&display=swap');
 
-    body {
-      font-family: "Kiwi Maru", "Noto Sans TC", sans-serif;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Kiwi Maru", "Noto Sans TC", sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-image: url("https://i.pinimg.com/1200x/89/49/42/8949420a26f352e731d6e1a7c9d0034b.jpg");
+      /* 🎨 使用相對路徑引用 GitHub 上的圖片 */
+      background-image: url("./images/background.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding: 20px;
     }
 
     .card {
       position: relative;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      backdrop-filter: blur(8px);
-      
+      background: transparent;
       border-radius: 20px;
       padding: 40px;
       max-width: 420px;
-      width: 85%;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* 淡淡的陰影增加立體感 */
+      width: 100%;
       text-align: center;
-      color: #333; /* 預設文字顏色 */
-      overflow: hidden;
+      animation: fadeIn 1s ease-in;
     }
 
-    /* 為了增加文字可讀性，給文字區塊一點點白色基底（非遮罩） */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .content-box {
-      background: rgba(255, 255, 255, 0.4); /* 極透明的白色，讓文字不被背景吃掉 */
-      backdrop-filter: blur(2px); /* 輕微磨砂效果，讓背景圖透出來但文字清楚 */
-      padding: 20px;
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.6);
     }
 
     .title {
       font-family: "Mochiy Pop One", "Kiwi Maru", sans-serif;
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 400;
-      margin-bottom: 24px;
-      letter-spacing: 2px;
+      margin-bottom: 28px;
+      letter-spacing: 3px;
       color: #2c3e50;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
     }
 
     .info {
       text-align: left;
       font-size: 16px;
-      line-height: 2;
+      line-height: 2.2;
+      margin: 20px 0;
     }
 
     .info-item {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       align-items: baseline;
+      transition: transform 0.2s ease;
+    }
+
+    .info-item:hover {
+      transform: translateX(5px);
     }
 
     .label {
       font-weight: bold;
-      margin-right: 10px;
+      margin-right: 12px;
       white-space: nowrap;
+      color: #34495e;
+      font-size: 17px;
     }
 
-    /* 地址連結樣式 */
     .map-link {
-      color: #e67e22; /* 使用醒目的顏色 */
+      color: #e67e22;
       text-decoration: none;
-      border-bottom: 1.5px solid #e67e22;
+      border-bottom: 2px solid #e67e22;
       font-weight: 700;
+      transition: all 0.3s ease;
+      padding-bottom: 2px;
     }
 
     .map-link:hover {
       color: #d35400;
       border-bottom-color: #d35400;
+      letter-spacing: 0.5px;
     }
 
     .footer {
-      margin-top: 30px;
-      font-size: 15px;
+      margin-top: 32px;
+      font-size: 16px;
       color: #555;
       text-align: center;
       font-family: "Mochiy Pop One", "Kiwi Maru", sans-serif;
+      line-height: 1.6;
+    }
+
+    /* 📱 手機版優化 */
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .content-box {
+        padding: 25px 20px;
+      }
+      
+      .title {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+      
+      .info {
+        font-size: 15px;
+      }
+
+      .label {
+        font-size: 15px;
+      }
+
+      .footer {
+        font-size: 14px;
+      }
+    }
+
+    /* 💫 載入動畫 */
+    @media (prefers-reduced-motion: no-preference) {
+      .info-item {
+        opacity: 0;
+        animation: slideIn 0.5s ease forwards;
+      }
+
+      .info-item:nth-child(1) { animation-delay: 0.2s; }
+      .info-item:nth-child(2) { animation-delay: 0.3s; }
+      .info-item:nth-child(3) { animation-delay: 0.4s; }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
     }
   </style>
 </head>
@@ -100,18 +183,20 @@
 
       <div class="info">
         <div class="info-item">
-          <span class="label">日期:</span>
+          <span class="label">📅 日期:</span>
           <span>2026 年 2 月 20 日(五)</span>
         </div>
         <div class="info-item">
-          <span class="label">時間:</span>
+          <span class="label">🕐 時間:</span>
           <span>晚上 17:30</span>
         </div>
         <div class="info-item">
-          <span class="label">地點:</span>
+          <span class="label">📍 地點:</span>
           <span>
-            <!-- 這裡設置 Google Map 跳轉 -->
-            <a href="https://www.google.com/maps/search/?api=1&query=宜蘭市慶和街23巷1號" target="_blank" class="map-link">
+            <a href="https://www.google.com/maps/search/?api=1&query=宜蘭市慶和街23巷1號" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="map-link">
               宜蘭市慶和街23巷1號
             </a>
           </span>
